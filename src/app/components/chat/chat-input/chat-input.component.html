@@ -1,0 +1,14 @@
+<div class="chat-input-container">
+  <textarea
+    type="text"
+    class="chat-input-text"
+    placeholder="請輸入訊息…"
+    #message
+    (keydown.enter)="onSubmit()"
+    (keyup.enter)="message.value = ''"
+    (keyup.escape)="onDismiss()"
+  ></textarea>
+  <div class="chat-input-submit" (click)="onSubmit()">
+    <mat-icon>send</mat-icon>
+  </div>
+</div>

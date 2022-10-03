@@ -1,0 +1,46 @@
+<div class="wrapper">
+  <div class="chat-box" *ngIf="visible">
+    <div class="chat-box-header">
+      <div class="chat-box-header-content">
+        <chat-avatar [image]="chatbot.avatar"></chat-avatar>
+        <h3 class="chatbot-name">
+          {{ chatbot.name }}
+        </h3>
+        <div class="chatbot-status">
+          <span class="chatbot-status-online">●</span>
+          <div class="chat-button-header" (click)="toggleChat()">
+            <mat-icon>close</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chat-box-main">
+      <ng-container *ngFor="let message of messages">
+        <div
+          class="chat-message"
+          [class.chat-message-received]="message.type === 'received'"
+          [class.chat-message-sent]="message.type === 'sent'"
+        >
+          <div>
+            <chat-avatar
+              [image]="message.from.avatar"
+              class="chat-message-from-avatar"
+            ></chat-avatar>
+            <div class="chat-message-text">
+              {{ message.text }}
+            </div>
+          </div>
+          <div class="chat-message-date">
+            {{ message.date | date: 'short' }}
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="chat-box-footer">
+      <chat-input (send)="onSendMessage($event)" (dismiss)="toggleChat()"></chat-input>
+    </div>
+  </div>
+  <button mat-fab color="primary" class="chat-button" (click)="toggleChat()">
+    <mat-icon>question_answer</mat-icon>
+  </button>
+</div>
