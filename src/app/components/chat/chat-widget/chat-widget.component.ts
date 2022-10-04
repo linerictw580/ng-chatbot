@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { IClient } from 'src/app/models/client.model';
 import { IMessage } from 'src/app/models/message.model';
 
@@ -8,6 +9,7 @@ import { IMessage } from 'src/app/models/message.model';
   styleUrls: ['./chat-widget.component.scss'],
 })
 export class ChatWidgetComponent implements OnInit {
+  public focus: Subject<unknown>;
   public messages: IMessage[];
   public chatbot: IClient;
   public user: IClient;
@@ -18,9 +20,13 @@ export class ChatWidgetComponent implements OnInit {
   }
   public set visible(value: boolean) {
     this._visible = value;
+    if (this._visible) {
+      setTimeout(() => this._focusInput(), 0);
+    }
   }
 
   constructor() {
+    this.focus = new Subject();
     this.messages = [];
     this.chatbot = { name: 'Chatbot', avatar: 'https://randomuser.me/api/portraits/lego/1.jpg' };
     this.user = { name: 'User', avatar: `https://randomuser.me/api/portraits/men/1.jpg` };
@@ -39,8 +45,12 @@ export class ChatWidgetComponent implements OnInit {
     });
   }
 
+  private _focusInput() {
+    this.focus.next(null);
+  }
+
   toggleChat() {
-    this._visible = !this.visible;
+    this.visible = !this.visible;
   }
 
   onSendMessage({ message }) {

@@ -21,8 +21,9 @@
           [class.chat-message-received]="message.type === 'received'"
           [class.chat-message-sent]="message.type === 'sent'"
         >
-          <div>
+          <div class="chat-message-text-wrapper">
             <chat-avatar
+              *ngIf="message.type === 'received'"
               [image]="message.from.avatar"
               class="chat-message-from-avatar"
             ></chat-avatar>
@@ -37,7 +38,11 @@
       </ng-container>
     </div>
     <div class="chat-box-footer">
-      <chat-input (send)="onSendMessage($event)" (dismiss)="toggleChat()"></chat-input>
+      <chat-input
+        [focus]="focus"
+        (send)="onSendMessage($event)"
+        (dismiss)="toggleChat()"
+      ></chat-input>
     </div>
   </div>
   <button mat-fab color="primary" class="chat-button" (click)="toggleChat()">

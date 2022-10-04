@@ -137,10 +137,14 @@
   max-width: 80%;
   word-wrap: break-word;
 
-  .chat-message-text {
-    margin-left: 10px;
-    padding: 10px;
-    border-radius: 3px;
+  .chat-message-text-wrapper {
+    display: flex;
+
+    .chat-message-text {
+      margin-left: 10px;
+      padding: 10px;
+      border-radius: 3px;
+    }
   }
   .chat-message-date {
     font-size: 11px;
@@ -151,27 +155,29 @@
 /**
  * Received message style
  */
-.chat-message-received {
+.chat-message.chat-message-received {
   margin-right: 50px;
 
-  .chat-message-from-avatar {
-    position: absolute;
-    left: 0;
-    bottom: -15px;
-  }
-  .chat-message-text {
-    background: #b9d6f2;
-    margin-left: 50px;
-    border-bottom-left-radius: 0;
-
-    &:before {
-      content: ' ';
+  .chat-message-text-wrapper {
+    .chat-message-from-avatar {
       position: absolute;
-      left: -10px;
-      bottom: 0;
-      border-right: solid 10px #b9d6f2;
-      border-top: solid 10px transparent;
-      z-index: 0;
+      left: 0;
+      bottom: -15px;
+    }
+    .chat-message-text {
+      background: #b9d6f2;
+      margin-left: 50px;
+      border-bottom-left-radius: 0;
+
+      &:before {
+        content: ' ';
+        position: absolute;
+        left: -10px;
+        bottom: 0;
+        border-right: solid 10px #b9d6f2;
+        border-top: solid 10px transparent;
+        z-index: 0;
+      }
     }
   }
   .chat-message-date {
@@ -182,32 +188,43 @@
 /**
  * Sent message style
  */
-.chat-message-sent {
+.chat-message.chat-message-sent {
   align-self: flex-end;
 
-  .chat-message-from-avatar {
-    position: absolute;
-    right: 0;
-    bottom: -15px;
-  }
-  .chat-message-text {
-    background: #84dccf;
-    margin-right: 50px;
-    border-bottom-right-radius: 0;
+  .chat-message-text-wrapper {
+    justify-content: flex-end;
+    word-break: break-word;
 
-    &:after {
-      content: ' ';
+    .chat-message-from-avatar {
       position: absolute;
-      right: -10px;
-      bottom: 0;
-      border-left: solid 10px #84dccf;
-      border-top: solid 10px transparent;
-      z-index: 0;
+      right: 0;
+      bottom: -15px;
+    }
+    .chat-message-text {
+      background: #84dccf;
+      margin-right: 50px;
+      border-bottom-right-radius: 0;
+
+      // no avatar
+      margin-right: 20px;
+
+      &:after {
+        content: ' ';
+        position: absolute;
+        right: -10px;
+        bottom: 0;
+        border-left: solid 10px #84dccf;
+        border-top: solid 10px transparent;
+        z-index: 0;
+      }
     }
   }
   .chat-message-date {
     text-align: right;
     padding-right: 50px;
+
+    // no avatar
+    padding-right: 15px;
   }
 }
 

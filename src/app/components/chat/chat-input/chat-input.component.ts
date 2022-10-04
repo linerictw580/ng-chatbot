@@ -3,25 +3,35 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'chat-input',
   templateUrl: './chat-input.component.html',
   styleUrls: ['./chat-input.component.scss'],
 })
-export class ChatInputComponent implements OnInit {
-  @Input() public buttonText = '↩︎';
+export class ChatInputComponent implements OnInit, OnDestroy {
+  @Input() public focus: EventEmitter<any>;
   @Output() public send = new EventEmitter();
   @Output() public dismiss = new EventEmitter();
   @ViewChild('message', { static: true }) private _message: ElementRef;
 
-  constructor() {}
+  private _focusSub: Subscription;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._focusSub = this.focus?.subscribe(() => {
+      this._focus();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this._focusSub?.unsubscribe();
+  }
 
   private _focus() {
     this._message.nativeElement.focus();
