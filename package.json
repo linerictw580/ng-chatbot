@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 20000",
-    "build": "ng build",
+    "build": "ng build --configuration production --output-hashing none && npm run package",
+    "package": "cat dist/ng-chatbot/{runtime,polyfills,main}.js > dist/ng-chatbot/chat-widget.js",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"

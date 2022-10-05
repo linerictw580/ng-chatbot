@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 import { IClient } from 'src/app/models/client.model';
 import { IMessage } from 'src/app/models/message.model';
@@ -9,6 +9,8 @@ import { IMessage } from 'src/app/models/message.model';
   styleUrls: ['./chat-widget.component.scss'],
 })
 export class ChatWidgetComponent implements OnInit {
+  @Output() inputMessage = new EventEmitter<{ message: string }>();
+
   public focus: Subject<unknown>;
   public messages: IMessage[];
   public chatbot: IClient;
@@ -53,8 +55,10 @@ export class ChatWidgetComponent implements OnInit {
     this.visible = !this.visible;
   }
 
-  onSendMessage({ message }) {
+  onSendMessage($event) {
+    const message: string = $event.message;
     // console.log(message);
     this._addMessage(this.user, message, 'sent');
+    this.inputMessage.emit({ message });
   }
 }
