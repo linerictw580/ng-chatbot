@@ -3,9 +3,9 @@
     <div class="chat-box-header">
       <div class="chat-box-header-content">
         <chat-avatar [image]="chatbot.avatar"></chat-avatar>
-        <h3 class="chatbot-name">
+        <div class="chatbot-name">
           {{ chatbot.name }}
-        </h3>
+        </div>
         <div class="chatbot-status">
           <span class="chatbot-status-online">●</span>
           <div class="chat-button-header" (click)="toggleChat()">

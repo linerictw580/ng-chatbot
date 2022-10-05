@@ -26,6 +26,8 @@
   }
 }
 
+$base-z-index: 1000;
+
 * {
   position: relative;
 }
@@ -44,7 +46,7 @@
     width: 0;
   }
   .chat-box {
-    z-index: 2;
+    z-index: calc($base-z-index + 2);
     position: absolute;
     left: 0;
     height: 100vh;
@@ -81,6 +83,7 @@
         .chatbot-name {
           margin: 0;
           padding: 1px;
+          font-size: 1rem;
           font-weight: 500;
         }
         .chatbot-status {
@@ -99,7 +102,7 @@
             color: red;
           }
           .chat-button-header {
-            z-index: 1;
+            z-index: calc($base-z-index + 1);
             color: white;
             background-color: inherit;
             margin-left: 5px;
@@ -124,6 +127,18 @@
     .chat-box-footer {
       color: white;
       height: 50px;
+    }
+  }
+  .chat-button {
+    z-index: calc($base-z-index + 1);
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    box-shadow: 0 5px 40px rgba($color: #000000, $alpha: 0.16);
+    background-color: #3f51b5;
+
+    @include sm {
+      display: block;
     }
   }
 }
@@ -176,7 +191,7 @@
         bottom: 0;
         border-right: solid 10px #b9d6f2;
         border-top: solid 10px transparent;
-        z-index: 0;
+        z-index: $base-z-index;
       }
     }
   }
@@ -215,7 +230,7 @@
         bottom: 0;
         border-left: solid 10px #84dccf;
         border-top: solid 10px transparent;
-        z-index: 0;
+        z-index: $base-z-index;
       }
     }
   }
@@ -225,19 +240,5 @@
 
     // no avatar
     padding-right: 15px;
-  }
-}
-
-.chat-button {
-  z-index: 1;
-  position: absolute;
-  bottom: 20px;
-  right: 40px;
-  box-shadow: 0 5px 40px rgba($color: #000000, $alpha: 0.16);
-  // background: #3f51b5;
-  // color: white;
-
-  @include sm {
-    display: block;
   }
 }
