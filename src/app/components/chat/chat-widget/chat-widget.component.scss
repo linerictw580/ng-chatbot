@@ -1,3 +1,7 @@
+// @import url('~normalize.css/normalize.css');
+@import url('~@angular/material/prebuilt-themes/indigo-pink.css');
+
+
 /* Small devices (landscape phones, 576px and up)*/
 @mixin sm {
   @media (min-width: 576px) {
@@ -30,6 +34,14 @@ $base-z-index: 1000;
 
 * {
   position: relative;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif,
+  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+.typography {
+  font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: normal;
 }
 
 .wrapper {
@@ -136,6 +148,13 @@ $base-z-index: 1000;
     right: 40px;
     box-shadow: 0 5px 40px rgba($color: #000000, $alpha: 0.16);
     background-color: #3f51b5;
+
+    // width: 56px;
+    // height: 56px;
+    // border-radius: 50%;
+    // cursor: pointer;
+    // border: none;
+    // outline: none;
 
     @include sm {
       display: block;

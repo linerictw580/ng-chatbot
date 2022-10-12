@@ -7,18 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
+    <!-- <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /> -->
   </head>
-  <body class="mat-typography">
+  <body>
     <!-- <app-root></app-root> -->
     <ng-chat-widget></ng-chat-widget>
     <script>
       const chatWidgetEl = document.querySelector('ng-chat-widget');
       // console.log('element', chatWidgetEl);
+      chatWidgetEl.addEventListener('ready', (event) => {
+        const chatApi = event.detail;
+        console.log(chatApi);
+        chatApi.setToggleVisible(false);
+        setTimeout(() => {
+          chatApi.setToggleVisible(true);
+        }, 1500);
+      });
       chatWidgetEl.addEventListener('inputMessage', (event) => {
         console.log(event.detail);
       });

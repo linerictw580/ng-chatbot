@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper typography">
   <div class="chat-box" *ngIf="visible">
     <div class="chat-box-header">
       <div class="chat-box-header-content">
@@ -9,7 +9,20 @@
         <div class="chatbot-status">
           <span class="chatbot-status-online">●</span>
           <div class="chat-button-header" (click)="toggleChat()">
-            <mat-icon>close</mat-icon>
+            <!-- <span class="icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 0 24 24"
+                width="24px"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+              </svg>
+            </span> -->
+            <chat-icon [key]="'close'"></chat-icon>
           </div>
         </div>
       </div>
@@ -45,7 +58,7 @@
       ></chat-input>
     </div>
   </div>
-  <button mat-fab color="primary" class="chat-button" (click)="toggleChat()">
-    <mat-icon>question_answer</mat-icon>
+  <button *ngIf="toggleVisible" mat-fab color="primary" class="chat-button" (click)="toggleChat()">
+    <chat-icon [key]="'chat'"></chat-icon>
   </button>
 </div>

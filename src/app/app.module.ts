@@ -7,13 +7,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { AppComponent } from './app.component';
 import { ChatWidgetComponent } from './components/chat/chat-widget/chat-widget.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { ChatAvatarComponent } from './components/chat/chat-avatar/chat-avatar.component';
 import { ChatInputComponent } from './components/chat/chat-input/chat-input.component';
 import { createCustomElement } from '@angular/elements';
+import { IconComponent } from './components/icon/icon.component';
 
 @NgModule({
-  declarations: [AppComponent, ChatWidgetComponent, ChatAvatarComponent, ChatInputComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, MatButtonModule, MatIconModule],
+  declarations: [AppComponent, ChatWidgetComponent, ChatAvatarComponent, ChatInputComponent, IconComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatButtonModule,
+    MatIconModule,
+  ],
   providers: [],
   // bootstrap: [AppComponent],
 })
