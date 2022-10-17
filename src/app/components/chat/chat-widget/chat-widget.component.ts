@@ -57,13 +57,8 @@ export class ChatWidgetComponent implements OnInit, AfterViewInit {
     }, 0);
   }
 
-  private _addMessage(from: IClient, text: string, type: 'sent' | 'received') {
-    this.messages.unshift({
-      from,
-      text,
-      type,
-      date: new Date().getTime(),
-    });
+  private _addMessage(message: IMessage) {
+    this.messages.unshift(message);
   }
 
   private _focusInput() {
@@ -71,11 +66,11 @@ export class ChatWidgetComponent implements OnInit, AfterViewInit {
   }
 
   addBotMessage(text: string) {
-    this._addMessage(this.chatbot, text, 'received');
+    this._addMessage({ from: this.chatbot, text, dir: 'received', date: this.date });
   }
 
   addUserMessage(text: string) {
-    this._addMessage(this.user, text, 'sent');
+    this._addMessage({ from: this.user, text, dir: 'sent', date: this.date });
   }
 
   toggleChat() {
@@ -87,5 +82,9 @@ export class ChatWidgetComponent implements OnInit, AfterViewInit {
     // console.log(message);
     this.addUserMessage(message);
     this.inputMessage.emit({ message });
+  }
+
+  get date() {
+    return new Date().getTime();
   }
 }

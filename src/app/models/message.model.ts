@@ -3,6 +3,6 @@ import { IClient } from './client.model';
 export interface IMessage {
   text: string;
   date: number;
-  type: 'sent' | 'received';
+  dir: 'sent' | 'received';
   from: IClient;
 }
