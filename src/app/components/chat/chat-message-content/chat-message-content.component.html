@@ -1,0 +1,9 @@
+<div class="chat-message-content" [ngSwitch]="message.type">
+  <!-- text -->
+  <div class="chat-message-text" *ngSwitchCase="MessageType.TEXT">
+    {{ message.text }}
+  </div>
+
+  <!-- HTML -->
+  <div class="chat-message-html" *ngSwitchCase="MessageType.HTML" [innerHTML]="message.text"></div>
+</div>

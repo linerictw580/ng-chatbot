@@ -5,4 +5,10 @@ export interface IMessage {
   date: number;
   dir: 'sent' | 'received';
   from: IClient;
+  type: MessageType;
+}
+
+export enum MessageType {
+  TEXT,
+  HTML,
 }

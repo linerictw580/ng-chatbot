@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { IClient } from 'src/app/models/client.model';
-import { IMessage } from 'src/app/models/message.model';
+import { IMessage, MessageType } from 'src/app/models/message.model';
 import { ChatApi } from '../chat-api';
 
 @Component({
@@ -65,12 +65,24 @@ export class ChatWidgetComponent implements OnInit, AfterViewInit {
     this.focus.next(null);
   }
 
-  addBotMessage(text: string) {
-    this._addMessage({ from: this.chatbot, text, dir: 'received', date: this.date });
+  addBotMessage(text: string, type: MessageType = MessageType.TEXT) {
+    this._addMessage({
+      from: this.chatbot,
+      text,
+      dir: 'received',
+      date: this.date,
+      type,
+    });
   }
 
-  addUserMessage(text: string) {
-    this._addMessage({ from: this.user, text, dir: 'sent', date: this.date });
+  addUserMessage(text: string, type: MessageType = MessageType.TEXT) {
+    this._addMessage({
+      from: this.user,
+      text,
+      dir: 'sent',
+      date: this.date,
+      type,
+    });
   }
 
   toggleChat() {

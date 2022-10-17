@@ -12,9 +12,10 @@ import { ChatAvatarComponent } from './components/chat/chat-avatar/chat-avatar.c
 import { ChatInputComponent } from './components/chat/chat-input/chat-input.component';
 import { createCustomElement } from '@angular/elements';
 import { IconComponent } from './components/icon/icon.component';
+import { ChatMessageContentComponent } from './components/chat/chat-message-content/chat-message-content.component';
 
 @NgModule({
-  declarations: [AppComponent, ChatWidgetComponent, ChatAvatarComponent, ChatInputComponent, IconComponent],
+  declarations: [AppComponent, ChatWidgetComponent, ChatAvatarComponent, ChatInputComponent, IconComponent, ChatMessageContentComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

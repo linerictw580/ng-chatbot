@@ -171,10 +171,10 @@ $base-z-index: 1000;
   max-width: 80%;
   word-wrap: break-word;
 
-  .chat-message-text-wrapper {
+  .chat-message-content-wrapper {
     display: flex;
 
-    .chat-message-text {
+    .chat-message-content {
       margin-left: 10px;
       padding: 10px;
       border-radius: 3px;
@@ -192,13 +192,13 @@ $base-z-index: 1000;
 .chat-message.chat-message-received {
   margin-right: 50px;
 
-  .chat-message-text-wrapper {
+  .chat-message-content-wrapper {
     .chat-message-from-avatar {
       position: absolute;
       left: 0;
       bottom: -15px;
     }
-    .chat-message-text {
+    .chat-message-content {
       background: #b9d6f2;
       margin-left: 50px;
       border-bottom-left-radius: 0;
@@ -225,7 +225,7 @@ $base-z-index: 1000;
 .chat-message.chat-message-sent {
   align-self: flex-end;
 
-  .chat-message-text-wrapper {
+  .chat-message-content-wrapper {
     justify-content: flex-end;
     word-break: break-word;
 
@@ -234,7 +234,7 @@ $base-z-index: 1000;
       right: 0;
       bottom: -15px;
     }
-    .chat-message-text {
+    .chat-message-content {
       background: #84dccf;
       margin-right: 50px;
       border-bottom-right-radius: 0;

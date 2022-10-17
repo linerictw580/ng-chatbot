@@ -1,3 +1,4 @@
+import { MessageType } from 'src/app/models/message.model';
 import { ChatWidgetComponent } from './chat-widget/chat-widget.component';
 
 export class ChatApi {
@@ -13,5 +14,9 @@ export class ChatApi {
 
   addBotMessage = (text: string) => {
     this._instance.addBotMessage(text);
+  };
+
+  addBotMessageHtml = (html: string) => {
+    this._instance.addBotMessage(html, MessageType.HTML);
   };
 }

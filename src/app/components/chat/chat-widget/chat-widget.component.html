@@ -18,18 +18,16 @@
       <ng-container *ngFor="let message of messages">
         <div
           class="chat-message"
-          [class.chat-message-received]="message.type === 'received'"
-          [class.chat-message-sent]="message.type === 'sent'"
+          [class.chat-message-received]="message.dir === 'received'"
+          [class.chat-message-sent]="message.dir === 'sent'"
         >
-          <div class="chat-message-text-wrapper">
+          <div class="chat-message-content-wrapper">
             <chat-avatar
-              *ngIf="message.type === 'received'"
+              *ngIf="message.dir === 'received'"
               [image]="message.from.avatar"
               class="chat-message-from-avatar"
             ></chat-avatar>
-            <div class="chat-message-text">
-              {{ message.text }}
-            </div>
+            <chat-message-content [message]="message"></chat-message-content>
           </div>
           <div class="chat-message-date">
             {{ message.date | date: 'short' }}
