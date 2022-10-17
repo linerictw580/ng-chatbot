@@ -19,9 +19,9 @@
     <script>
       const chatWidgetEl = document.querySelector('ng-chat-widget');
       // console.log('element', chatWidgetEl);
-      chatWidgetEl.addEventListener('ready', (event) => {
+      chatWidgetEl.addEventListener('chatReady', (event) => {
         const chatApi = event.detail;
-        console.log(chatApi);
+        console.log('chatReady', chatApi);
         chatApi.setToggleVisible(false);
         setTimeout(() => {
           chatApi.setToggleVisible(true);

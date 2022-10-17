@@ -9,6 +9,7 @@ import {
 import { Subject } from 'rxjs';
 import { IClient } from 'src/app/models/client.model';
 import { IMessage } from 'src/app/models/message.model';
+import { ChatApi } from '../chat-api';
 
 @Component({
   selector: 'chat-widget',
@@ -17,7 +18,7 @@ import { IMessage } from 'src/app/models/message.model';
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class ChatWidgetComponent implements OnInit, AfterViewInit {
-  @Output() ready = new EventEmitter<any>();
+  @Output() chatReady = new EventEmitter<any>();
   @Output() inputMessage = new EventEmitter<{ message: string }>();
 
   public focus: Subject<unknown>;
@@ -46,15 +47,14 @@ export class ChatWidgetComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this._addMessage(this.chatbot, '請問有什麼可以為您服務？', 'received');
+    this.addBotMessage('請問有什麼可以為您服務？');
   }
 
   ngAfterViewInit(): void {
-    this.ready.emit({
-      setToggleVisible: (value: boolean) => {
-        this.toggleVisible = value;
-      },
-    });
+    // setTimeout 延遲事件發送 (否則外部無法接收到 Angular Elements 在 ngAfterViewInit 所發出的事件)
+    setTimeout(() => {
+      this.chatReady.emit(new ChatApi({ instance: this }));
+    }, 0);
   }
 
   private _addMessage(from: IClient, text: string, type: 'sent' | 'received') {
@@ -70,6 +70,14 @@ export class ChatWidgetComponent implements OnInit, AfterViewInit {
     this.focus.next(null);
   }
 
+  addBotMessage(text: string) {
+    this._addMessage(this.chatbot, text, 'received');
+  }
+
+  addUserMessage(text: string) {
+    this._addMessage(this.user, text, 'sent');
+  }
+
   toggleChat() {
     this.visible = !this.visible;
   }
@@ -77,7 +85,7 @@ export class ChatWidgetComponent implements OnInit, AfterViewInit {
   onSendMessage($event) {
     const message: string = $event.message;
     // console.log(message);
-    this._addMessage(this.user, message, 'sent');
+    this.addUserMessage(message);
     this.inputMessage.emit({ message });
   }
 }
