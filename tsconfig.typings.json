@@ -1,0 +1,17 @@
+{
+  "include": ["src/app/**/*.ts"],
+  "exclude": ["**/*.spec.ts"],
+  "compilerOptions": {
+    // Generate d.ts files
+    "declaration": true,
+    // This compiler run should
+    // only output d.ts files
+    "emitDeclarationOnly": true,
+    "outFile": "dist/ng-chatbot/chat-widget",
+    "experimentalDecorators": true,
+    "target": "ES2020",
+    "moduleResolution": "node",
+    // Add this to prevent Cannot find module or its corresponding type declarations problem with local files
+    "baseUrl": "."
+  }
+}

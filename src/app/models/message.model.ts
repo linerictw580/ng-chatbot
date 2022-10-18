@@ -9,6 +9,6 @@ export interface IMessage {
 }
 
 export enum MessageType {
-  TEXT,
-  HTML,
+  TEXT = 'text',
+  HTML = 'html',
 }

@@ -4,9 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 20000",
-    "build": "ng build --configuration production --output-hashing none && npm run package && npm run move",
+    "build": "ng build --configuration production --optimization false --output-hashing none && npm run package && npm run typings && npm run move",
     "package": "cat dist/ng-chatbot/{runtime,polyfills,main}.js > dist/ng-chatbot/chat-widget.js",
-    "move": "cp dist/ng-chatbot/{chat-widget.js,styles.css} D:/GitRepos/DLP/dlp-front-end/src/vendor/chat-widget",
+    "move": "cp dist/ng-chatbot/{chat-widget.js,styles.css,chat-widget.d.ts} D:/GitRepos/DLP/dlp-front-end/src/vendor/chat-widget",
+    "typings": "tsc --project tsconfig.typings.json",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
